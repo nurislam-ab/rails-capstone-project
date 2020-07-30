@@ -12,6 +12,5 @@ class CreateArticles < ActiveRecord::Migration[6.0]
     add_index :articles, :id
     add_index :articles, :title
     add_index :articles, :author_id
-    
   end
 end
