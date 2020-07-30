@@ -1,0 +1,8 @@
+<h1>Log in</h1>
+
+<%= form_for(:session) do |f| %>
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email %>
+
+    <%= f.submit 'Log in'%>
+<% end %>
