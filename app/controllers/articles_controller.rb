@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @categories = Category.all.map { |c| [c.name, c.id] }
   end
 
   # GET /articles/1/edit
@@ -73,6 +74,7 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-       params.require(:article).permit(:author_id, :title, :text, :image)
+       params.require(:article).permit(:author_id, :title, :text, :image, :category_id)
     end
+
 end

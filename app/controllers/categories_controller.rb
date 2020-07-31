@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @category = Category.find(params[:id])
   end
 
   # GET /categories/new
@@ -19,6 +20,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
+    @category = Category.find(params[:id])
   end
 
   # POST /categories
@@ -40,6 +42,8 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
+    @category = Category.find(params[:id])
+
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
@@ -69,6 +73,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.fetch(:category, {})
+      params.require(:category).permit(:name, :priority)
     end
 end
