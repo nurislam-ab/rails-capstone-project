@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :categories
+  resources :articles
   resources :users
 
   delete '/logout', to: 'sessions#destroy'
@@ -11,5 +13,5 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index'
 
-  root 'application#index'
+  root 'articles#index'
 end
