@@ -6,6 +6,8 @@
     <%= f.label :title, "Article title" %>
     <%= f.text_field :title %>
 
+    <%= f.select :category_id, options_for_select(@categories), :prompt => 'Select one!' %>
+
     <%= f.label :text, "Content" %>
     <%= f.text_area :text %>
 

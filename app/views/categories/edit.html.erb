@@ -1,6 +1,16 @@
 <h1>Editing Category</h1>
 
-<%= render 'form', category: @category %>
+<%#= render 'form', category: @category %>
+<%= form_for(@category) do |f| %>
+    <%= f.label :name, "Category name" %>
+    <%= f.text_field :name %>
+
+    <%= f.label :priority, "Priority" %>
+    <%= f.number_field :priority %>
+
+    <%= f.submit 'Add a category'%>
+<% end %>
+
 
 <%= link_to 'Show', @category %> |
 <%= link_to 'Back', categories_path %>
