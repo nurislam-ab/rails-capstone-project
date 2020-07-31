@@ -1,0 +1,16 @@
+<h1>Editing User</h1>
+
+<%# <%= render 'form', user: @user %>
+
+<%= form_for @user do |f| %>
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email %>
+
+    <%= f.submit "Submit" %>
+<% end %>
+
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>
