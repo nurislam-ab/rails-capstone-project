@@ -2,15 +2,18 @@
 
 <%#= render 'form', article: @article %>
 
+<h1><%= @category %></h1>
 <%= form_for(@article) do |f| %>
     <%= f.label :title, "Article title" %>
     <%= f.text_field :title %>
+
+    <%= f.select :category_id, options_for_select(@categories, @category), :prompt => 'Select one!' %>
 
     <%= f.label :text, "Content" %>
     <%= f.text_area :text %>
 
     <%= f.label :image, "Image" %>
-    <%= f.text_field :image %>
+    <%= f.file_field :image %>
 
     <%= f.submit 'Update post'%>
 <% end %>
