@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :categories
-  resources :articles
+  resources :articles do
+    resources :votes, only: [:create, :destroy]
+  end
+  
   resources :users
 
   delete '/logout', to: 'sessions#destroy'
