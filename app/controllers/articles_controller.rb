@@ -22,6 +22,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
+    @categories = Category.all.map { |c| [c.name, c.id] }
+    @category = @article.category_id
   end
 
   # POST /articles
