@@ -13,7 +13,8 @@
     <% @articles.each do |article| %>
       <tr>
         <td><%= link_to article.title, article %></td>
-        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Show', article %>
+        <td><%= votes_btn(article) %></td>
         <% if current_user == article.author %>
           <td><%= link_to 'Edit', edit_article_path(article) %></td>
           <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
