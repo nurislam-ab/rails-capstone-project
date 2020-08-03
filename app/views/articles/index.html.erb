@@ -13,6 +13,7 @@
     <% @articles.each do |article| %>
       <tr>
         <td><%= link_to article.title, article %></td>
+        <td><%= article.category.name %></td>
         <td><%= link_to 'Show', article %>
         <td><%= votes_btn(article) %></td>
         <% if current_user == article.author %>

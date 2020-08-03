@@ -10,41 +10,9 @@
   </head>
 
   <body>
-    <ul>
-      <li>
-        <%# <%= link_to  "Events", root_path %>
-      </li>
-
-      <% if logged_in? %>
-        <li>
-          <%= link_to current_user.name , user_path(current_user.id) %>
-        </li>
-        <li>
-          <%# <%= link_to  "Create new event", new_event_path %>
-        </li>
-        <li>
-          <%= link_to  "Log out", logout_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to  "Users", users_path %>
-        </li>
-
-        <li>
-          <%= link_to  "Log in", login_path %>
-        </li>
-
-        <li>
-          <%= link_to  "Sign up", signup_path %>
-        </li>
-      <% end %>
-        <li>
-          <%= link_to  "Articles", articles_path %>
-        </li>
-        <li>
-          <%= link_to  "Categories", categories_path %>
-        </li>
-    </ul>
-    <%= yield %>
+    <%= render 'shared/main_menu' %>
+    <main class="main-content">
+      <%= yield %>
+    </main>
   </body>
 </html>
