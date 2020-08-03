@@ -1,0 +1,32 @@
+<header class ="header-wrapper">
+    <nav class="main-menu">
+        <%= link_to image_tag("stay_2.png", alt: "Rails", class: 'logo'), root_path %>
+        <ul class="main-menu-items">
+            <li>
+                <%= link_to  "Articles", articles_path %>
+            </li>
+            <%= menu_categories %>
+        </ul>
+        <ul class="user-profile-menu">
+            <% if logged_in? %>
+                <li>
+                    <%= link_to current_user.name , user_path(current_user.id) %>
+                </li>
+                <li>
+                    <%= link_to  "Log out", logout_path, method: :delete %>
+                </li>
+                <li>
+                    <%= link_to  "Users", users_path %>
+                </li>
+            <% else %>
+                <li>
+                    <%= link_to  "Log in", login_path %>
+                </li>
+
+                <li>
+                    <%= link_to  "Sign up", signup_path %>
+                </li>
+            <% end %>
+        </ul>
+    </nav>
+</header>

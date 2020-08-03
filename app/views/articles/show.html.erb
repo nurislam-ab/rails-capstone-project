@@ -1,25 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h2> Article title:
+<%# <h2> Article title:
     <%= @article.title%>
-</h2>
+<%# </h2> %>
 
-<h4> 
+<%# <h4> 
     Article created by <%= @article.author.name%>
-</h4>
+<%# </h4> %>
 
-<p> Category: 
-    <%= @article.category.name %>
-</p>
+<%# <p> Category:  %>
+    <%#= @article.category.name if @article.category %>
+<%# </p>
+<p> Content:  %>
+    <%#= @article.text%>
+<%# </p>
+<p> Image:  %>
+    <%#= image_tag(@article.image) %>
+<%# </p> %>
 
-
-<p> Content: 
-    <%= @article.text%>
-</p>
-
-<p> Image: 
-    <%= image_tag(@article.image)%>
-</p>
+<%= article_detail_view %>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
