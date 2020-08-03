@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   get '/users', to: 'users#index'
 
-  root 'articles#index'
+  root 'home#index'
 end
