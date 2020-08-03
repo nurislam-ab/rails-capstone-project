@@ -10,7 +10,7 @@ class VotesController < ApplicationController
     end
 
     def destroy
-        vote = vote.find_by(id: params[:id], user: current_user, article_id: params[:article_id])
+        vote = Vote.find_by(id: params[:id], user: current_user, article_id: params[:article_id])
         if vote
             vote.destroy
             redirect_to articles_path, notice: 'You have undo a vote for a article.'
