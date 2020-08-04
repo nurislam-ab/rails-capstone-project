@@ -330,5 +330,14 @@ article.article-preview-card:nth-of-type(4n+1) + * {
         object-fit: cover;
         max-height: 500px;
     }
+
+    .article-content {
+        color: #343434;
+        letter-spacing: -0.18px;
+        line-height: 28px;
+        font-weight: 400;
+        text-align: left;
+        margin: 10px 0;
+    }
 }
 
