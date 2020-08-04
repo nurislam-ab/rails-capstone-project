@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% set_page_title(@category.name) %>
+
 <h2> Category name:
     <%= @category.name%>
 </h2>
@@ -8,7 +10,9 @@
     Category priority <%= @category.priority%>
 </h4>
 
-<%= article_preview_by_category %>
+<div class="articles-wrapper">
+    <%= article_preview(@category.articles) %>
+</div>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
