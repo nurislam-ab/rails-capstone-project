@@ -21,7 +21,18 @@ module ApplicationHelper
     cat_menu_list.html_safe
   end
 
-  def most_voted_articles
-    
+  def article_edit_btns(article)
+    article_edit_html = ''
+    if current_user == article.author
+      article_edit_html += <<-HTML
+        #{link_to 'Edit', edit_article_path(article), class: 'edit-btn'}
+        #{link_to 'Destroy', article, method: :delete, class: 'delete-btn', data: { confirm: 'Are you sure?' }}
+      HTML
+    end
+    article_edit_html.html_safe
+  end
+
+  def set_page_title(title)
+    content_for :page_title, title
   end
 end
