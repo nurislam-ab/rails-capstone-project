@@ -1,11 +1,12 @@
 class VotesController < ApplicationController
+    before_action :require_login, only: [:create, :destroy]
     def create
         @vote = current_user.votes.new(article_id: params[:article_id])
 
         if @vote.save
-          redirect_to articles_path, notice: 'You voted for a article.'
+            redirect_back(fallback_location: root_path, notice: 'You voted for a article.')
         else
-          redirect_to articles_path, alert: 'You cannot vote for this article.'
+            redirect_back(fallback_location: root_path, alert: 'You cannot vote for this article.')
         end
     end
 
