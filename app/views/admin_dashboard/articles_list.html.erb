@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="container-header">
+    <div class="title">
+      <h1>Articles</h1>
+    </div>
+    <div class="right-block">
+        <%= link_to 'New Article', new_article_path, class: 'new-article-btn' %>
+    </div>
+  </div>
+  
+  <div class="table-wrapper">
+    <table class="items-tables">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Category</th>
+          <th>Votes</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @articles.each do |article| %>
+          <tr>
+            <td><%= link_to article.id, article %></td>
+            <td><%= link_to article.title, article %></td>
+            <td><%= link_to article.author.name, article.author %></td>
+            <td><%= link_to article.category.name, article.category %></td>
+            <td><%= article.votes.count %></td>
+            <td>
+              <%= link_to 'Show', article %>
+              <% if current_user == article.author %>
+                <%= link_to 'Edit', edit_article_path(article) %>
+                <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

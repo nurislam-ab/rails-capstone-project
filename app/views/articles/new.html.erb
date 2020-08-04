@@ -1,21 +1,31 @@
-<h1>New Article</h1>
+<div class="container">
+    <div class="container-header">
+        <div class="title">
+            <h1>New article</h1>
+        </div>
+    </div>
 
-<%#= render 'form', article: @article %>
+    <div class="form-container">
+        <div class="form-wrapper">
+            <%= form_for(@article) do |f| %>
+                <%= f.label :title, "Article title" %>
+                <%= f.text_field :title %>
 
-<%= form_for(@article) do |f| %>
-    <%= f.label :title, "Article title" %>
-    <%= f.text_field :title %>
+                <%= f.label :category_id, "Category" %>
+                <%= f.select :category_id, options_for_select(@categories), :prompt => 'Select one!' %>
 
-    <%= f.select :category_id, options_for_select(@categories), :prompt => 'Select one!' %>
+                <%= f.label :preview_text, "Preview text" %>
+                <%= f.text_area :preview_text %>
 
-    <%= f.label :text, "Content" %>
-    <%= f.text_area :text %>
+                <%= f.label :text, "Content" %>
+                <%= f.rich_text_area :text %>
 
-    <%= f.label :image, "Image" %>
-    <%= f.file_field :image %>
+                <%= f.label :image, "Image" %>
+                <%= f.file_field :image %>
+                <%= image_tag(f.object.article_image_path) %>
 
-    <%= f.submit 'Add a post'%>
-<% end %>
-
-
-<%= link_to 'Back', articles_path %>
+                <%= f.submit 'Add a post', class: "add-btn"%>
+            <% end %>
+        </div>
+    </div>
+</div>

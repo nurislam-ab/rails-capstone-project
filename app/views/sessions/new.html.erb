@@ -1,8 +1,21 @@
-<h1>Log in</h1>
+<div class="container">
+    <div class="container-header">
+        <div class="title">
+            <h1>Log in</h1>
+        </div>
+    </div>
+    
+    <div class="form-container">
+        <div class="form-wrapper user-form">
+            <%= form_for(:session) do |f| %>
+                <%= f.label :email, "Email" %>
+                <%= f.email_field :email, required: true %>
 
-<%= form_for(:session) do |f| %>
-    <%= f.label :email, "Email" %>
-    <%= f.email_field :email %>
+                <%= f.submit "Log in", class: 'add-btn blue-dark-btn' %>
+            <% end %>
 
-    <%= f.submit 'Log in'%>
-<% end %>
+            <%= link_to "Register", signup_path, class: 'add-btn link-btn' %>
+      </div>
+    </div>
+</div>
+

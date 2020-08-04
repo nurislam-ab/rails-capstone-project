@@ -4,7 +4,8 @@ module CategoriesHelper
         categories.collect do |c|
             if c.articles.count > 0
                 category_preview += <<-HTML
-                    <article style="background-image: url(#{url_for(c.latest_article.first.image)})", class='featured-article featured-article-category'>
+                    <article class='featured-article featured-article-category'>
+                        <div class="article-image-holder" style="background-image: url(#{url_for(c.latest_article.first.image)})"></div>
                         <strong class="article-category">
                             #{c.name}
                         </strong>

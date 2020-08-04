@@ -1,24 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<%# <h2> Article title:
-    <%= @article.title%>
-<%# </h2> %>
+<% set_page_title(@article.title) %>
 
-<%# <h4> 
-    Article created by <%= @article.author.name%>
-<%# </h4> %>
+<div class="article-edit">
+    <%= article_edit_btns(@article) %>
+</div>
 
-<%# <p> Category:  %>
-    <%#= @article.category.name if @article.category %>
-<%# </p>
-<p> Content:  %>
-    <%#= @article.text%>
-<%# </p>
-<p> Image:  %>
-    <%#= image_tag(@article.image) %>
-<%# </p> %>
+<div class="article-container">
+    <%= article_detail_view %>
+</div>
 
-<%= article_detail_view %>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>

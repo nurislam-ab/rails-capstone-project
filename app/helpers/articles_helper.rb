@@ -4,7 +4,8 @@ module ArticlesHelper
         if @most_voted_articles.blank?
             @recent_articles.collect do |ra|
                 featured_article += <<-HTML
-                <article style="background-image: url(#{url_for(ra.image)})", class='featured-article'>
+                <article class='featured-article'>
+                    <div class="article-image-holder" style="background-image: url(#{url_for(ra.article.image)})"></div>
                     <strong class="article-category">
                         #{ra.category.name}
                     </strong>
@@ -15,7 +16,7 @@ module ArticlesHelper
                         #{link_to ra.title, ra}
                     </h2>
                     <p class="article-preview-text">
-                        #{ra.text}
+                        #{ra.preview_text}
                     </p>
                 </article>
                 HTML
@@ -24,7 +25,8 @@ module ArticlesHelper
         else
             @most_voted_articles.collect do |mva|
                 featured_article += <<-HTML
-                <article style="background-image: url(#{url_for(mva.article.image)})", class='featured-article'>
+                <article class='featured-article'>
+                    <div class="article-image-holder" style="background-image: url(#{url_for(mva.article.image)})"></div>
                     <strong class="article-category">
                         #{mva.article.category.name}
                     </strong>
@@ -35,7 +37,7 @@ module ArticlesHelper
                         #{link_to mva.article.title, mva.article}
                     </h2>
                     <p class="article-preview-text">
-                        #{mva.article.text}
+                        #{mva.article.preview_text}
                     </p>
                 </article>
                 HTML
@@ -44,9 +46,9 @@ module ArticlesHelper
         end
     end
 
-    def article_preview
+    def article_preview(articles)
         article_preview_card = ''
-        @articles.collect do |article|
+        articles.collect do |article|
             article_preview_card += <<-HTML
             <article class='article-preview-card'>
                 <div class="article-preview-card-image">
@@ -54,76 +56,67 @@ module ArticlesHelper
                 </div>
                 
                 <div class="article-preview-card-info">
-                    <strong class="article-category">
-                        #{article.category.name}
-                    </strong>
-                    <span class="article-author">
-                        #{article.author.name}
-                    </span>
-                    <h2 class="article-title">
-                        #{link_to article.title, article}
-                    </h2>
-                    <p class="article-preview-text">
-                        #{article.text}
-                    </p>
-                </div>
-        </article>
-        HTML
-        end
-        article_preview_card.html_safe
-    end
+                    <div class="pci-blocks-wraper">
+                        <div class="apc-header">
+                            #{link_to article.category.name, article.category, class: 'article-category'}
+                            #{link_to article.author.name, article.author, class: 'article-author'}
+                        </div>
+                        <h2 class="article-title">
+                            #{link_to article.title, article}
+                        </h2>
+                        <p class="article-preview-text">
+                            #{article.preview_text}
+                        </p>
 
-    def article_preview_by_category
-        article_preview_card = ''
-        @category.articles.collect do |article|
-            article_preview_card += <<-HTML
-            <article class='article-preview-card'>
-                <div class="article-preview-card-image">
-                    #{image_tag(article.image)}
+                        <div class="apc-header">
+                            #{link_to 'Read more', article, class: 'article-read-more'}
+
+                            <div class="article-votes">
+                                #{votes_btn(article)}
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
-                
-                <div class="article-preview-card-info">
-                    <strong class="article-category">
-                        #{article.category.name}
-                    </strong>
-                    <span class="article-author">
-                        #{article.author.name}
-                    </span>
-                    <h2 class="article-title">
-                        #{link_to article.title, article}
-                    </h2>
-                    <p class="article-preview-text">
-                        #{article.text}
-                    </p>
-                </div>
-        </article>
+            </article>
         HTML
         end
         article_preview_card.html_safe
     end
 
     def article_detail_view
-        article_preview_card = ''
+        article_detail_view = ''
         
-        article_preview_card += <<-HTML
+        article_detail_view += <<-HTML
         <article class="article-detailed-view">
+            <div class="article-pre-info">
+                <div class="article-date-and-category">
+                    #{link_to @article.category.name, @article.category, class: 'article-category'}
+                </div>
+                <div class="article-votes">
+                    #{votes_btn(@article)}
+                    <span class="article-votes-count">
+                        #{pluralize(@article.votes.count, 'vote')}
+                    </span>
+                </div>
+            </div>
             <h2 class="article-title">
                 #{@article.title}
             </h2>
+
             <div class="article-pre-info">
                 <div class="article-date-and-category">
-                    <strong class="article-category">
-                        #{@article.category.name}
-                    </strong>
                     <span class="article-published-date">
                         #{@article.created_at.strftime("%B #{@article.created_at.day.ordinalize}, %Y")}
                     </span>
                 </div>
-                <span class="article-author">
-                    #{@article.author.name}
-                </span>
+                
+                #{link_to @article.author.name, @article.author, class: 'article-author'}
             </div>
 
+            <div class="article-preivew-text">
+                <p>#{@article.preview_text}</p>
+            </div>
             <div class="article-image">
                 #{image_tag(@article.image)}
             </div>
@@ -133,6 +126,6 @@ module ArticlesHelper
             </div>
         </article>
         HTML
-        article_preview_card.html_safe
+        article_detail_view.html_safe
     end
 end
