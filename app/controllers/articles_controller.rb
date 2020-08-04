@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ArticlesController < ApplicationController
   # before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:edit, :update, :new, :create]
+  before_action :require_login, only: %i[edit update new create]
 
   # GET /articles
   # GET /articles.json
@@ -70,13 +72,14 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def article_params
-       params.require(:article).permit(:author_id, :title, :text, :image, :category_id, :preview_text)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def article_params
+    params.require(:article).permit(:author_id, :title, :text, :image, :category_id, :preview_text)
+  end
 end

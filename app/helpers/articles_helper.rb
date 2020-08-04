@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module ArticlesHelper
-    def most_voted_articles
-        featured_article = ''
-        if @most_voted_articles.blank?
-            @recent_articles.collect do |ra|
-                featured_article += <<-HTML
+  def most_voted_articles
+    featured_article = ''
+    if @most_voted_articles.blank?
+      @recent_articles.collect do |ra|
+        featured_article += <<-HTML
                 <article class='featured-article'>
                     <div class="article-image-holder" style="background-image: url(#{url_for(ra.article.image)})"></div>
                     <strong class="article-category">
@@ -19,12 +21,12 @@ module ArticlesHelper
                         #{ra.preview_text}
                     </p>
                 </article>
-                HTML
-            end
-            featured_article.html_safe
-        else
-            @most_voted_articles.collect do |mva|
-                featured_article += <<-HTML
+        HTML
+      end
+      featured_article.html_safe
+    else
+      @most_voted_articles.collect do |mva|
+        featured_article += <<-HTML
                 <article class='featured-article'>
                     <div class="article-image-holder" style="background-image: url(#{url_for(mva.article.image)})"></div>
                     <strong class="article-category">
@@ -40,16 +42,16 @@ module ArticlesHelper
                         #{mva.article.preview_text}
                     </p>
                 </article>
-                HTML
-            end
-            featured_article.html_safe
-        end
+        HTML
+      end
+      featured_article.html_safe
     end
+  end
 
-    def article_preview(articles)
-        article_preview_card = ''
-        articles.collect do |article|
-            article_preview_card += <<-HTML
+  def article_preview(articles)
+    article_preview_card = ''
+    articles.collect do |article|
+      article_preview_card += <<-HTML
             <article class='article-preview-card'>
                 <div class="article-preview-card-image">
                     #{image_tag(article.image)}
@@ -79,15 +81,15 @@ module ArticlesHelper
                     </div>
                 </div>
             </article>
-        HTML
-        end
-        article_preview_card.html_safe
+      HTML
     end
+    article_preview_card.html_safe
+  end
 
-    def article_detail_view
-        article_detail_view = ''
-        
-        article_detail_view += <<-HTML
+  def article_detail_view
+    article_detail_view = ''
+
+    article_detail_view += <<-HTML
         <article class="article-detailed-view">
             <div class="article-pre-info">
                 <div class="article-date-and-category">
@@ -125,7 +127,7 @@ module ArticlesHelper
                 #{@article.text}
             </div>
         </article>
-        HTML
-        article_detail_view.html_safe
-    end
+    HTML
+    article_detail_view.html_safe
+  end
 end
