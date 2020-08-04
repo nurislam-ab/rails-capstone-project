@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Class documentation comment
 class Article < ApplicationRecord
   validates :title, presence: true, length: { in: 5..200 }
   validates :preview_text, presence: true, length: { in: 5..200 }

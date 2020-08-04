@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby.exe
 # frozen_string_literal: true
 
+# Class documentation comment
+
 require_relative '../config/boot'
 require 'rake'
 Rake.application.run

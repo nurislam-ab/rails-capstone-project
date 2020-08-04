@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ArticlesHelper
 module ArticlesHelper
   def most_voted_articles
     featured_article = ''

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ApplicationHelper
 module ApplicationHelper
   def votes_btn(article)
     vote = Vote.find_by(article: article, user: current_user)

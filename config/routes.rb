@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Class documentation comment
+
 Rails.application.routes.draw do
   resources :categories
   resources :articles do
