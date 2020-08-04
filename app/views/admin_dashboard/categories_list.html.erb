@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="container-header">
+    <div class="title">
+      <h1>Categories</h1>
+    </div>
+    <div class="right-block">
+        <%= link_to 'New category', new_category_path, class: 'new-article-btn' %>
+    </div>
+  </div>
+  
+  <div class="table-wrapper">
+    <table class="items-tables">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Category name</th>
+          <th>Priority</th>
+          <th>Created at</th>
+          <th>Updated at</th>
+          <th>Articles count</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+            <tr>
+                <td><%= link_to category.id, category %></td>
+                <td><%= link_to category.name, category %></td>
+                <td><%= category.priority %></td>
+                <td><%= category.created_at %></td>
+                <td><%= category.updated_at %></td>
+                <td><%= category.articles.count %></td>
+                <td>
+                    <%= link_to 'Show', category %>
+                    <%= link_to 'Edit', edit_article_path(category) %>
+                    <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
