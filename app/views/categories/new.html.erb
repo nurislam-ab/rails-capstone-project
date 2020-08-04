@@ -1,14 +1,21 @@
-<h1>New Category</h1>
+<div class="container">
+    <div class="container-header">
+        <div class="title">
+            <h1>New article</h1>
+        </div>
+    </div>
 
-<%#= render 'form', category: @category %>
-<%= form_for(@category) do |f| %>
-    <%= f.label :name, "Category name" %>
-    <%= f.text_field :name %>
+    <div class="form-container">
+        <div class="form-wrapper">
+            <%= form_for(@category) do |f| %>
+                <%= f.label :name, "Category name" %>
+                <%= f.text_field :name %>
 
-    <%= f.label :priority, "Priority" %>
-    <%= f.number_field :priority %>
+                <%= f.label :priority, "Priority" %>
+                <%= f.number_field :priority %>
 
-    <%= f.submit 'Add a category'%>
-<% end %>
-
-<%= link_to 'Back', categories_path %>
+                 <%= f.submit 'Add a category', class: "add-btn"%>
+            <% end %>
+        </div>
+    </div>
+</div>
