@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :articles do
     resources :votes, only: [:create, :destroy]
   end
-  
+
   resources :users
 
   delete '/logout', to: 'sessions#destroy'
@@ -15,6 +15,14 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
 
   get '/users', to: 'users#index'
+
+  get 'dashboard/articles', to: 'admin_dashboard#articles_list', as: :articles_admin
+
+  get 'dashboard/categories', to: 'admin_dashboard#categories_list', as: :categories_admin
+
+  get 'dashboard/users', to: 'admin_dashboard#users_list', as: :users_admin
+
+  get 'dashboard/votes', to: 'admin_dashboard#votes_list', as: :votes_admin
 
   root 'home#index'
 end

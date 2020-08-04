@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_03_103951) do
+ActiveRecord::Schema.define(version: 2020_08_04_195029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2020_08_03_103951) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "created_at", precision: 6, null: false
     t.integer "category_id"
+    t.string "preview_text"
     t.index ["author_id"], name: "index_articles_on_author_id"
     t.index ["id"], name: "index_articles_on_id"
     t.index ["title"], name: "index_articles_on_title"
@@ -84,6 +85,8 @@ ActiveRecord::Schema.define(version: 2020_08_03_103951) do
     t.string "avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "bio"
+    t.string "website"
   end
 
   create_table "votes", force: :cascade do |t|
