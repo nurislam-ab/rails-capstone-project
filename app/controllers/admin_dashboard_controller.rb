@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Class documentation comment
 class AdminDashboardController < ApplicationController
   layout 'admin'
 

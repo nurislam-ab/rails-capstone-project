@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Class documentation comment
 class HomeController < ApplicationController
   def index
     @most_voted_articles = Vote.most_voted_articles

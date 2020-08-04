@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# CategoryHelper
 module CategoriesHelper
   def show_categories(categories)
     category_preview = ''

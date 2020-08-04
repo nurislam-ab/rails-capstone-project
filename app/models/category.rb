@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Class documentation comment
 class Category < ApplicationRecord
   has_many :articles
 
