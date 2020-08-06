@@ -1,9 +1,9 @@
 <header class ="header-wrapper">
     <nav class="main-menu">
-        <%= link_to image_tag("stay_2.png", alt: "Rails", class: 'logo'), root_path %>
+        <%= link_to image_tag("kitchen_loop.png", alt: "Rails", class: 'logo'), root_path, class: 'logo-link' %>
         <ul class="main-menu-items">
             <li>
-                <%= link_to  "Articles", articles_path %>
+                <%= link_to  "All Articles", articles_path %>
             </li>
             <%= menu_categories %>
         </ul>
@@ -15,9 +15,11 @@
                 <li>
                     <%= link_to  "Log out", logout_path, method: :delete %>
                 </li>
-                <li>
-                    <%= link_to  "Users", users_path %>
+                <% if current_user.id == 1 %>
+                  <li>
+                    <%= link_to  "Admin Dashboard", articles_admin_path %>
                 </li>
+                <% end %>
             <% else %>
                 <li>
                     <%= link_to  "Log in", login_path %>
@@ -27,6 +29,9 @@
                     <%= link_to  "Sign up", signup_path %>
                 </li>
             <% end %>
+                <li>
+                    <%= link_to  "Add article", new_article_path %>
+                </li>
         </ul>
     </nav>
 </header>
