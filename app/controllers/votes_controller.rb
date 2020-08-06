@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Class documentation comment
 class VotesController < ApplicationController
   before_action :require_login, only: %i[create destroy]
