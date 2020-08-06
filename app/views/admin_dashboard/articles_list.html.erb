@@ -1,12 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<% page_title('Dashboard - Articles list') %>
 <div class="container">
   <div class="container-header">
     <div class="title">
       <h1>Articles</h1>
-    </div>
-    <div class="right-block">
-        <%= link_to 'New Article', new_article_path, class: 'new-article-btn' %>
     </div>
   </div>
   
@@ -25,14 +23,14 @@
       <tbody>
         <% @articles.each do |article| %>
           <tr>
-            <td><%= link_to article.id, article %></td>
+            <td><%= article.id %></td>
             <td><%= link_to article.title, article %></td>
             <td><%= link_to article.author.name, article.author %></td>
             <td><%= link_to article.category.name, article.category %></td>
             <td><%= article.votes.count %></td>
             <td>
               <%= link_to 'Show', article %>
-              <% if current_user == article.author %>
+              <% if current_user == article.author || current_user.id == 1%>
                 <%= link_to 'Edit', edit_article_path(article) %>
                 <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
