@@ -1,6 +1,6 @@
 # Class documentation comment
 class VotesController < ApplicationController
-  before_action :require_login, only: %i[create destroy]
+  before_action :require_login
   def create
     @vote = current_user.votes.new(article_id: params[:article_id])
 

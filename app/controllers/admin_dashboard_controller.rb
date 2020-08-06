@@ -1,6 +1,7 @@
 # Class documentation comment
 class AdminDashboardController < ApplicationController
   layout 'admin'
+  before_action :require_login
 
   def articles_list
     @articles = Article.includes(:author, :votes, :category).all.order('created_at desc')

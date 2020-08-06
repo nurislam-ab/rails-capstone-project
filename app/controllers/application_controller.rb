@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    flash[:error] = 'You must be logged in to access this section'
-    redirect_to login_path
-    return unless logged_in?
+    unless logged_in?
+      flash[:error] = 'You must be logged in to access this section'
+      redirect_to login_path
+    end
   end
 end
