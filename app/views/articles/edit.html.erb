@@ -1,3 +1,5 @@
+<% page_title(@article.title) %>
+
 <div class="container">
     <div class="container-header">
         <div class="title">
@@ -7,18 +9,30 @@
 
     <div class="form-container">
         <div class="form-wrapper">
-            <%= form_for(@article) do |f| %>
+            <%= form_with(model: @article, local: true) do |f| %>
+                <% if @article.errors.any? %>
+                    <div class="error-explanation">
+                    <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+                    <ul>
+                        <% @article.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                    </div>
+                <% end %>
+
                 <%= f.label :title, "Article title" %>
-                <%= f.text_field :title %>
+                <%= f.text_field :title, required: true %>
 
                 <%= f.label :category_id, "Category" %>
-                <%= f.select :category_id, options_for_select(@categories, @category), :prompt => 'Select one!' %>
+                <%= f.select :category_id, options_for_select(@categories, @category), :prompt => 'Select one!', required: true %>
 
                 <%= f.label :preview_text, "Preview text" %>
-                <%= f.text_area :preview_text %>
+                <%= f.text_area :preview_text, required: true %>
 
                 <%= f.label :text, "Content" %>
-                <%= f.rich_text_area :text %>
+                <%= f.rich_text_area :text, required: true %>
 
                 <%= f.label :image, "Image" %>
                 <%= f.file_field :image %>
