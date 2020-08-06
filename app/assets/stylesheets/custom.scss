@@ -403,26 +403,7 @@ article.article-preview-card {
 .articles-wrapper article.article-preview-card:nth-of-type(4n+3), 
 .articles-wrapper article.article-preview-card:nth-of-type(4n+3) + * {
     flex-direction: row-reverse;
-    // .article-preview-card-image {
-    //     order: 2;
-    // }
-
-    // .article-preview-card-info {
-    //     order: 1;
-    // }
 }
-  
-// article.article-preview-card:nth-of-type(4n+1), 
-// article.article-preview-card:nth-of-type(4n+1) + * {
-//     .article-preview-card-image {
-//         order: 1;
-//     }
-
-//     .article-preview-card-info {
-//         order: 2;
-//     }
-// }
-
 /*#endregion Article preview card*/
 
 
@@ -762,6 +743,7 @@ a.edit-btn:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-bottom: 20vh;
 
     .form-wrapper {
         justify-content: center;
@@ -850,7 +832,7 @@ a.edit-btn:hover {
     transition: .5s;
     background-color: #2ecc71;
     text-decoration: none;
-    color: $white;
+    color: $white !important;
     margin-top: 30px;
     border: 2px solid $light-green !important;
 }
@@ -1019,6 +1001,7 @@ a.edit-btn:hover {
     flex-direction: column;
     text-align: center;
     width: 100%;
+    height: 40vh;
     
     p {
         padding: 10px;
