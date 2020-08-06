@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # ApplicationHelper
 module ApplicationHelper
   def votes_btn(article)
@@ -13,7 +11,7 @@ module ApplicationHelper
 
   def menu_categories
     cat_menu_list = ''
-    categories = Category.all
+    categories = Category.all.order('created_at desc').limit(5)
     categories.collect do |c|
       cat_menu_list += <<-HTML
         <li>
@@ -35,7 +33,11 @@ module ApplicationHelper
     article_edit_html.html_safe
   end
 
-  def set_page_title(title)
+  def page_title(title)
     content_for :page_title, title
+  end
+
+  def user_profile_edit_btn(user)
+    return link_to('Edit', edit_user_path(user)) unless current_user != user
   end
 end
