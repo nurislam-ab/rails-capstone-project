@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class documentation comment
 class CreateArticles < ActiveRecord::Migration[6.0]
   def change
     create_table :articles do |t|
@@ -8,7 +11,7 @@ class CreateArticles < ActiveRecord::Migration[6.0]
       t.datetime  :updated_at, precision: 6, null: false
       t.datetime  :created_at, precision: 6, null: false
     end
-    
+
     add_index :articles, :id
     add_index :articles, :title
     add_index :articles, :author_id

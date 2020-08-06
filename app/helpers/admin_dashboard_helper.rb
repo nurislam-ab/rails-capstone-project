@@ -1,2 +1,3 @@
+# AdminDashboardHelper
 module AdminDashboardHelper
 end

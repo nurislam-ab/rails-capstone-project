@@ -1,3 +1,5 @@
+# Class documentation comment
+
 require 'test_helper'
 
 class VoteTest < ActiveSupport::TestCase

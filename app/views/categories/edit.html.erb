@@ -1,16 +1,23 @@
-<h1>Editing Category</h1>
+<% page_title(@category.name) %>
 
-<%#= render 'form', category: @category %>
-<%= form_for(@category) do |f| %>
-    <%= f.label :name, "Category name" %>
-    <%= f.text_field :name %>
+<div class="container">
+    <div class="container-header">
+        <div class="title">
+            <h1>Edit: <%= @category.name %></h1>
+        </div>
 
-    <%= f.label :priority, "Priority" %>
-    <%= f.number_field :priority %>
+        <div class="right-block">
+            <%= link_to 'Show', @category, class: 'new-article-btn' %>
+            <%= link_to 'Back', categories_admin_path, class: 'new-article-btn' %>
+        </div>
+    </div>
 
-    <%= f.submit 'Add a category'%>
-<% end %>
+    <div class="form-container">
+        <div class="form-wrapper">
+            <%= render "form" %>
+        </div>
+    </div>
+</div>
 
 
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
+

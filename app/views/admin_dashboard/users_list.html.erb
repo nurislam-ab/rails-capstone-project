@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<% page_title('Dashboard - Users list') %>
+
 <div class="container">
   <div class="container-header">
     <div class="title">
       <h1>Users</h1>
-    </div>
-    <div class="right-block">
-        <%= link_to 'New user', new_user_path, class: 'new-article-btn' %>
     </div>
   </div>
   
@@ -25,14 +24,14 @@
       <tbody>
         <% @users.each do |user| %>
             <tr>
-                <td><%= link_to user.id, user %></td>
+                <td><%= user.id %></td>
                 <td><%= link_to user.name, user %></td>
                 <td><%= user.email %></td>
                 <td><%= user.created_at %></td>
                 <td><%= user.updated_at %></td>
                 <td>
                     <%= link_to 'Show', user %>
-                    <%= link_to 'Edit', edit_article_path(user) %>
+                    <%= link_to 'Edit', edit_user_path(user) %>
                     <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
                 </td>
             </tr>

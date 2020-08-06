@@ -1,19 +1,20 @@
+# Class documentation comment
 class SessionsController < ApplicationController
-    def new; end
-    
-    def create
-        user = User.find_by(email: params[:session][:email].downcase)
+  def new; end
 
-        if user
-            log_in user
-            redirect_to user
-        else
-            render 'new'
-        end
-    end
+  def create
+    user = User.find_by(email: params[:session][:email].downcase)
 
-    def destroy
-        log_out
-        redirect_to root_path
+    if user
+      log_in user
+      redirect_to user
+    else
+      render 'new'
     end
+  end
+
+  def destroy
+    log_out
+    redirect_to root_path
+  end
 end

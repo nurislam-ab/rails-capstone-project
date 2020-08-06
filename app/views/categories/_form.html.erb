@@ -1,17 +1,21 @@
-<%= form_with(model: category, local: true) do |form| %>
-  <% if category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+<%= form_with(model: @category, local: true) do |f| %>
+  <% if @category.errors.any? %>
+    <div class="error-explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
 
       <ul>
-        <% category.errors.full_messages.each do |message| %>
+        <% @category.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= f.label :name, "Category name" %>
+  <%= f.text_field :name, required: true %>
+
+  <%= f.label :priority, "Priority" %>
+  <%= f.number_field :priority %>
+
+  <%= f.submit 'Save', class: "add-btn"%>
 <% end %>

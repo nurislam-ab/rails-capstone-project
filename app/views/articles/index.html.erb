@@ -1,9 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Articles</h1>
+<% page_title("Articles") %>
 
-<div class="articles-wrapper">
-    <%= article_preview(@articles) %>
+<div class="container articles-container">
+    <div class="container-header">
+        <div class="title">
+            <h1>Articles</h1>
+        </div>
+    </div>
+
+    <div class="category-box-container">
+        <div class="category-items">
+            <%= category_blocks(@categories) %>
+        </div>
+    </div>
+
+    <div class="articles-wrapper">
+        <%= article_preview(@articles) %>
+    </div>
 </div>
-
-<%= link_to 'New Article', new_article_path %>

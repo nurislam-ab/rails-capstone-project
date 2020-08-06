@@ -1,93 +1,72 @@
+# ArticlesHelper
 module ArticlesHelper
-    def most_voted_articles
-        featured_article = ''
-        if @most_voted_articles.blank?
-            @recent_articles.collect do |ra|
-                featured_article += <<-HTML
-                <article class='featured-article'>
-                    <div class="article-image-holder" style="background-image: url(#{url_for(ra.article.image)})"></div>
-                    <strong class="article-category">
-                        #{ra.category.name}
-                    </strong>
-                    <span class="article-author">
-                        #{ra.author.name}
-                    </span>
-                    <h2 class="article-title">
-                        #{link_to ra.title, ra}
-                    </h2>
-                    <p class="article-preview-text">
-                        #{ra.preview_text}
-                    </p>
-                </article>
-                HTML
-            end
-            featured_article.html_safe
-        else
-            @most_voted_articles.collect do |mva|
-                featured_article += <<-HTML
-                <article class='featured-article'>
-                    <div class="article-image-holder" style="background-image: url(#{url_for(mva.article.image)})"></div>
-                    <strong class="article-category">
-                        #{mva.article.category.name}
-                    </strong>
-                    <span class="article-author">
-                        #{mva.article.author.name}
-                    </span>
-                    <h2 class="article-title">
-                        #{link_to mva.article.title, mva.article}
-                    </h2>
-                    <p class="article-preview-text">
-                        #{mva.article.preview_text}
-                    </p>
-                </article>
-                HTML
-            end
-            featured_article.html_safe
-        end
-    end
-
-    def article_preview(articles)
-        article_preview_card = ''
-        articles.collect do |article|
-            article_preview_card += <<-HTML
-            <article class='article-preview-card'>
-                <div class="article-preview-card-image">
-                    #{image_tag(article.image)}
-                </div>
-                
-                <div class="article-preview-card-info">
-                    <div class="pci-blocks-wraper">
-                        <div class="apc-header">
-                            #{link_to article.category.name, article.category, class: 'article-category'}
-                            #{link_to article.author.name, article.author, class: 'article-author'}
-                        </div>
-                        <h2 class="article-title">
-                            #{link_to article.title, article}
-                        </h2>
-                        <p class="article-preview-text">
-                            #{article.preview_text}
-                        </p>
-
-                        <div class="apc-header">
-                            #{link_to 'Read more', article, class: 'article-read-more'}
-
-                            <div class="article-votes">
-                                #{votes_btn(article)}
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
+  def most_voted_articles
+    featured_article = ''
+    if @most_voted_articles.blank?
+      @recent_articles.collect do |ra|
+        featured_article += <<-HTML
+          <article class='featured-article'>
+              <div class="article-image-holder" style="background-image: url(#{url_for(ra.article.image)})"></div>
+              <strong class="article-category">#{ra.category.name}</strong>
+              <span class="article-author">#{ra.author.name}</span>
+              <h2 class="article-title">#{link_to ra.title, ra}</h2>
+              <p class="article-preview-text">#{ra.preview_text}</p>
+          </article>
         HTML
-        end
-        article_preview_card.html_safe
+      end
+    else
+      @most_voted_articles.collect do |mva|
+        featured_article += <<-HTML
+          <article class='featured-article'>
+              <div class="article-image-holder" style="background-image: url(#{url_for(mva.article.image)})"></div>
+              <strong class="article-category">#{mva.article.category.name}</strong>
+              <span class="article-author">#{mva.article.author.name}</span>
+              <h2 class="article-title">#{link_to mva.article.title, mva.article}</h2>
+              <p class="article-preview-text">#{mva.article.preview_text}</p>
+          </article>
+        HTML
+      end
     end
+    featured_article.html_safe
+  end
 
-    def article_detail_view
-        article_detail_view = ''
-        
-        article_detail_view += <<-HTML
+  def article_preview(articles)
+    article_preview_card = ''
+    if articles.count.positive?
+      articles.collect do |article|
+        article_preview_card += <<-HTML
+          <article class='article-preview-card'>
+              <div class="article-preview-card-image">#{image_tag(article.image)}</div>
+              
+              <div class="article-preview-card-info">
+                  <div class="pci-blocks-wraper">
+                      <div class="apc-header">
+                          #{link_to article.category.name, article.category, class: 'article-category'}
+                          #{link_to article.author.name, article.author, class: 'article-author'}
+                      </div>
+                      <h2 class="article-title">#{link_to article.title, article}</h2>
+                      <p class="article-preview-text">#{article.preview_text}</p>
+
+                      <div class="apc-header">
+                          #{link_to 'Read more', article, class: 'article-read-more'}
+                          <div class="article-votes">#{votes_btn(article)}</div>
+                      </div>
+                  </div>
+              </div>
+          </article>
+        HTML
+      end
+      article_preview_card.html_safe
+    else
+      content_tag :div, class: 'no-items' do
+        content_tag(:p, 'No articles in this category yet')
+      end
+    end
+  end
+
+  def article_detail_view
+    article_detail_view = ''
+    article_detail_view += <<-HTML
         <article class="article-detailed-view">
             <div class="article-pre-info">
                 <div class="article-date-and-category">
@@ -95,20 +74,14 @@ module ArticlesHelper
                 </div>
                 <div class="article-votes">
                     #{votes_btn(@article)}
-                    <span class="article-votes-count">
-                        #{pluralize(@article.votes.count, 'vote')}
-                    </span>
+                    <span class="article-votes-count">#{pluralize(@article.votes.count, 'vote')}</span>
                 </div>
             </div>
-            <h2 class="article-title">
-                #{@article.title}
-            </h2>
+            <h2 class="article-title">#{@article.title}</h2>
 
             <div class="article-pre-info">
                 <div class="article-date-and-category">
-                    <span class="article-published-date">
-                        #{@article.created_at.strftime("%B #{@article.created_at.day.ordinalize}, %Y")}
-                    </span>
+                    <span class="article-published-date">#{@article.created_at.strftime("%B #{@article.created_at.day.ordinalize}, %Y")}</span>
                 </div>
                 
                 #{link_to @article.author.name, @article.author, class: 'article-author'}
@@ -117,15 +90,26 @@ module ArticlesHelper
             <div class="article-preivew-text">
                 <p>#{@article.preview_text}</p>
             </div>
-            <div class="article-image">
-                #{image_tag(@article.image)}
-            </div>
-
-            <div class="article-content">
-                #{@article.text}
-            </div>
+            <div class="article-image">#{image_tag(@article.image)}</div>
+            <div class="article-content">#{@article.text}</div>
         </article>
-        HTML
-        article_detail_view.html_safe
+    HTML
+    article_detail_view.html_safe
+  end
+
+  def user_articles(user, name, articles)
+    if articles.count.zero?
+      content_tag :div, class: 'no-items' do
+        if current_user == user
+          concat content_tag(:p, "#{name}, you don't have any articles yet")
+          concat content_tag(:p, 'Would you like to add a new article?')
+          concat link_to('Add a new article', new_article_path, class: 'add-btn')
+        else
+          content_tag(:p, "#{name} don't have any articles yet")
+        end
+      end
+    else
+      article_preview(articles)
     end
+  end
 end

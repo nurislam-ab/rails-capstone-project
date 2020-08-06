@@ -1,16 +1,57 @@
-<h1>Editing User</h1>
 
-<%# <%= render 'form', user: @user %>
+<% page_title(@user.name) %>
 
-<%= form_for @user do |f| %>
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name %>
+<div class="container">
+    <div class="container-header">
+        <div class="title">
+            <h1>Edit: <%= @user.name%> <%= @user.surname%></h1>
+        </div>
+        
+        <div class="right-block">
+            <%= link_to 'Show', @user, class: 'new-article-btn' %>
+            <%= link_to 'Back', @user, class: 'new-article-btn' %>
+        </div>
+    </div>
+    
+    <div class="form-container">
+        <div class="form-wrapper user-form">
+            <%= form_with(model: @user, local: true) do |f| %>
+                <% if @user.errors.any? %>
+                    <div id="error_explanation">
+                    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-    <%= f.label :email, "Email" %>
-    <%= f.email_field :email %>
+                    <ul>
+                        <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                    </div>
+                <% end %>
 
-    <%= f.submit "Submit" %>
-<% end %>
+                <%= f.label :avatar, "Image" %>
+                <% if @user.avatar.attached? %>
+                  <%= f.file_field :avatar %>
+                <% else %>
+                    <%= f.file_field :avatar, required: true %>
+                <% end %>
+                
+                <%= f.label :name, "Name" %>
+                <%= f.text_field :name, required: true %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+                <%= f.label :surname, "Surname" %>
+                <%= f.text_field :surname %>
+
+                <%= f.label :email, "Email" %>
+                <%= f.email_field :email, required: true %>
+
+                <%= f.label :bio, "About" %>
+                <%= f.text_area :bio %>
+
+                <%= f.label :website, "Website" %>
+                <%= f.url_field :website %>
+
+                <%= f.submit "Submit", class: 'add-btn' %>
+            <% end %>
+        </div>
+    </div>
+</div>

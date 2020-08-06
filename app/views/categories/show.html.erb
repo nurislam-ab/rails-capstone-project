@@ -1,18 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<% set_page_title(@category.name) %>
+<% page_title(@category.name) %>
+<div class="container articles-container">
+    <div class="container-header">
+        <div class="title">
+            <h1><%= @category.name %></h1>
+        </div>
+    </div>
+    
+    <div class="category-box-container">
+        <div class="category-items">
+            <%= category_blocks(@categories) %>
+        </div>
+    </div>
 
-<h2> Category name:
-    <%= @category.name%>
-</h2>
-
-<h4> 
-    Category priority <%= @category.priority%>
-</h4>
-
-<div class="articles-wrapper">
-    <%= article_preview(@category.articles) %>
+    <div class="articles-wrapper">
+        <%= article_preview(@category.articles) %>
+    </div>
 </div>
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
