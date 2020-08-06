@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 # Class documentation comment
 class Article < ApplicationRecord
-  validates :title, presence: true, length: { in: 5..200 }
+  validates :title, presence: true, length: { in: 5..200 }, uniqueness: true
   validates :preview_text, presence: true, length: { in: 5..200 }
   validates :text, presence: true
   validates :image, presence: true
@@ -20,5 +18,9 @@ class Article < ApplicationRecord
 
   def article_image_path
     image.attached? ? image : 'placeholder-image.png'
+  end
+
+  def category_not_nil
+    errors.add :category_id, 'cannot be nil' if category_id.nil?
   end
 end
