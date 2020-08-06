@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # ApplicationController
 class ApplicationController < ActionController::Base
   include SessionsHelper
@@ -7,9 +5,8 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    unless logged_in?
-      flash[:error] = 'You must be logged in to access this section'
-      redirect_to login_path
-    end
+    flash[:error] = 'You must be logged in to access this section'
+    redirect_to login_path
+    return unless logged_in?
   end
 end
