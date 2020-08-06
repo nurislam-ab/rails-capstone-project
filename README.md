@@ -31,7 +31,7 @@
 
 ## Screenshots
 * [Homepage](app/assets/images/screenshot_1.jpg)
-* Article detailed page](app/assets/images/screenshot_2.jpg)
+* [Article detailed page](app/assets/images/screenshot_2.jpg)
 * [Articles list page](app/assets/images/screenshot_3.jpg)
 * [Authors profile](app/assets/images/screenshot_4.jpg)
 * [Admin dashboard](app/assets/images/screenshot_5.jpg)
