@@ -1,31 +1,23 @@
-# frozen_string_literal: true
-
 # Class documentation comment
 class ArticlesController < ApplicationController
-  # before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: %i[edit update new create]
 
-  # GET /articles
-  # GET /articles.json
   def index
-    @articles = Article.all.order('created_at desc')
+    @articles = Article.with_attached_image.includes(:category, :author, :votes).all.order('created_at desc')
+    @categories = Category.all.order('priority, name, created_at desc')
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
   def show
-    @article = Article.includes(:category, :author).find(params[:id])
+    @article = Article.with_attached_image.includes(:category, :author, :votes).find(params[:id])
   end
 
-  # GET /articles/new
   def new
     @article = Article.new
     @categories = Category.all.map { |c| [c.name, c.id] }
   end
 
-  # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
+    @article = Article.with_attached_image.includes(:category).find(params[:id])
     @categories = Category.all.map { |c| [c.name, c.id] }
     @category = @article.category_id
   end
@@ -34,6 +26,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = current_user.articles.build(article_params)
+    @categories = Category.all.map { |c| [c.name, c.id] }
 
     respond_to do |format|
       if @article.save
@@ -50,6 +43,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1.json
   def update
     @article = Article.find(params[:id])
+    @categories = Category.all.map { |c| [c.name, c.id] }
 
     respond_to do |format|
       if @article.update(article_params)
