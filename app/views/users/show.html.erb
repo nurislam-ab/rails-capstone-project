@@ -1,26 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container">
-    <div class="container-header">
-        <div class="title">
-            <h1><%= @user.name %></h1>
+<% page_title(@user.name) %>
+
+<div class="container user-container">
+    <div class="container-header profile-header">
+        <div class="profile-info">
+            <div class="title">
+                <h1><%= @user.name%> <%= @user.surname %></h1>
+                <%= user_profile_edit_btn(@user) %>
+            </div>
+
+            <div class="user-bio">
+                <p>
+                    <%= @user.bio %>
+                </p>
+            </div>
+
+            <div class="user-website">
+                <%= link_to  @user.website, @user.website %>
+            </div>
+
+            <div class="user-stats">
+                <%= pluralize(@user.articles.count, 'Article') %>
+            </div>
         </div>
 
-        <div class="user-bio">
-            <p>
-                <%= @user.bio %>
-            </p>
-        </div>
-
-        <div class="user-website">
-            <%= link_to  @user.website, @user.website %>
+        <div class="user-avatat-wrapper">
+            <%= image_tag(@user.user_image_path)%>
         </div>
     </div>
 
-    <div class="user-container">
-        
+    <div class="user-articles">
+        <div class="user-articles-tabs">
+            <%= link_to  "Articles", @user %>
+        </div>
+
+        <div class="tab-content">
+            <%= user_articles(@user, @user.name, @user.articles) %>
+        </div>
     </div>
 </div>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
