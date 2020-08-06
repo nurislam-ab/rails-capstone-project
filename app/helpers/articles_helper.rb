@@ -37,7 +37,6 @@ module ArticlesHelper
         article_preview_card += <<-HTML
           <article class='article-preview-card'>
               <div class="article-preview-card-image">#{image_tag(article.image)}</div>
-              
               <div class="article-preview-card-info">
                   <div class="pci-blocks-wraper">
                       <div class="apc-header">
@@ -83,7 +82,7 @@ module ArticlesHelper
                 <div class="article-date-and-category">
                     <span class="article-published-date">#{@article.created_at.strftime("%B #{@article.created_at.day.ordinalize}, %Y")}</span>
                 </div>
-                
+
                 #{link_to @article.author.name, @article.author, class: 'article-author'}
             </div>
 

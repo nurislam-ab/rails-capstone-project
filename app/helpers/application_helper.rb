@@ -16,7 +16,7 @@ module ApplicationHelper
       cat_menu_list += <<-HTML
         <li>
           #{link_to(c.name, category_path(c))}
-        </li>  
+        </li>
       HTML
     end
     cat_menu_list.html_safe
