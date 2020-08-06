@@ -4,17 +4,17 @@
 
 ## Features
 
-* As a guest/visitor
+### As a guest/visitor
 - See main page
 - View authors profile
 - Observe the list of articles by categories
 
 
-* As a logged-in user:
+### As a logged-in user:
 - Create and post articles
 - Vote for articles
 
-* As a admin of the web app
+### As a admin of the web app
 - CRUD operations for categories
 - See the list of all users and articles
 - Have access to the list of votes
