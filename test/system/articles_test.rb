@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Class documentation comment
 
 require 'application_system_test_case'
