@@ -116,6 +116,7 @@ Give a ⭐️ if you like this project!
 
 * Microverse
 * Stand up team
+* Coding partner
 * Design idea by [Nelson Sakwa on Behance](https://www.behance.net/gallery/14554909/liFEsTlye-Mobile-version)
 
 ## 📝 License
