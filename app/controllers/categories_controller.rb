@@ -1,6 +1,6 @@
 # Class documentation comment
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show edit update destroy]
+  before_action :require_login, only: %i[edit update new create destroy]
   layout 'admin', only: %i[new create edit update destroy]
 
   def show
