@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe Article, type: :model do
   context 'should create articles' do
     it 'records cannot be blank ' do
