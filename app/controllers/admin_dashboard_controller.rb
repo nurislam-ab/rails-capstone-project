@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 # Class documentation comment
 class AdminDashboardController < ApplicationController
   layout 'admin'
 
   def articles_list
-    @articles = Article.all.order('created_at desc')
+    @articles = Article.includes(:author, :votes, :category).all.order('created_at desc')
   end
 
   def categories_list
@@ -17,6 +15,6 @@ class AdminDashboardController < ApplicationController
   end
 
   def votes_list
-    @votes = Vote.all.order('created_at desc').includes(:article, :user)
+    @votes = Vote.includes(:user, :article).all.order('created_at desc')
   end
 end
