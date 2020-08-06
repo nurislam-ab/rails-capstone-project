@@ -7,8 +7,8 @@ default: &default
 development:
   <<: *default
   database: rails_capstone_project
-  username: user_111
-  password: password123qaz
+  # username: 
+  # password:
   # host: localhost
   # port: 5432
 
@@ -18,6 +18,8 @@ development:
 test:
   <<: *default
   database: rails_capstone_project_test
+  # username:
+  # password:
 
 production:
   <<: *default
