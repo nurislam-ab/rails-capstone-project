@@ -1,3 +1,5 @@
+@import "font-awesome";
+
 $primary-color: #f86309;
 $border-color: #ecf0f1;
 $grey: #dfe4ea;
@@ -1039,6 +1041,30 @@ footer.footer-container {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+
+    .social-media-block {
+      display: flex;
+
+      a.social-icon {
+        font-size: 20px;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 50%;
+        background: $primary-color;
+        color: $brown;
+        text-decoration: none;
+        width: 25px;
+        height: 25px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        transition: .5s;
+      }
+
+      a.social-icon:hover {
+        color: $primary-color;
+      }
+    }
 
     a:hover {
       background-color: transparent !important;
