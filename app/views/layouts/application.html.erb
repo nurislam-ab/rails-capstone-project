@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:page_title) ? yield(:page_title) : "Page title" %></title>
+    <title><%= yield(:page_title)%></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
