@@ -1,13 +1,5 @@
 # Class documentation comment
 class UsersController < ApplicationController
-  def show
-    @user = User.includes(:articles, :votes).find(params[:id])
-  end
-
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def new
     @user = User.new
   end
@@ -23,8 +15,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = obtain_user_with_resources
+  end
+
+  def edit
+    @user = obtain_user_only
+  end
+
   def update
-    @user = User.find(params[:id])
+    @user = obtain_user_only
 
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = obtain_user_only
     @user.destroy
 
     redirect_to users_admin_path, notice: 'User was successfully destroyed.'
@@ -43,8 +43,12 @@ class UsersController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find(params[:id])
+  def obtain_user_only
+    User.find(params[:id])
+  end
+
+  def obtain_user_with_resources
+    User.includes(:articles, :votes).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

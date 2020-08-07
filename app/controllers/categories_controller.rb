@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   layout 'admin', only: %i[new create edit update destroy]
 
   def show
-    @category = Category.includes(articles: %i[votes author]).find(params[:id])
+    @category = obtain_category
     @categories = Category.all.order('priority, name, created_at desc')
   end
 
@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
+    @category = obtain_category
   end
 
   def create
@@ -27,7 +27,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
+    @category = obtain_category
 
     if @category.update(category_params)
       redirect_to categories_admin_path, notice: 'Category was successfully updated.'
@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
+    @category = obtain_category
     @category.destroy
     redirect_back(fallback_location: root_path, notice: 'Category was successfully destroyed.')
   end
@@ -45,8 +45,8 @@ class CategoriesController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_category
-    @category = Category.find(params[:id])
+  def obtain_category
+    Category.includes(articles: %i[votes author]).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
