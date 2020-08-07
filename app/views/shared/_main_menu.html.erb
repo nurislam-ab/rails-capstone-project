@@ -8,30 +8,10 @@
             <%= menu_categories %>
         </ul>
         <ul class="user-profile-menu">
-            <% if logged_in? %>
-                <li>
-                    <%= link_to current_user.name , user_path(current_user.id) %>
-                </li>
-                <li>
-                    <%= link_to  "Log out", logout_path, method: :delete %>
-                </li>
-                <% if current_user.id == 1 %>
-                  <li>
-                    <%= link_to  "Admin Dashboard", articles_admin_path %>
-                </li>
-                <% end %>
-            <% else %>
-                <li>
-                    <%= link_to  "Log in", login_path %>
-                </li>
-
-                <li>
-                    <%= link_to  "Sign up", signup_path %>
-                </li>
-            <% end %>
-                <li>
-                    <%= link_to  "Add article", new_article_path %>
-                </li>
+            <%= menu_links_render %>
+            <li>
+                <%= link_to  "Add article", new_article_path %>
+            </li>
         </ul>
     </nav>
 </header>
