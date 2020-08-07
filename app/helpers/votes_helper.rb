@@ -1,3 +1,0 @@
-# VotesHelper
-module VotesHelper
-end

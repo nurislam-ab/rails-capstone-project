@@ -1,3 +1,0 @@
-# AdminDashboardHelper
-module AdminDashboardHelper
-end

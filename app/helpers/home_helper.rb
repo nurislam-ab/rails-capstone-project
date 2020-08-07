@@ -1,3 +1,0 @@
-# HomeHelper
-module HomeHelper
-end
