@@ -1,3 +1,72 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "application";
+
+.user-container {
+    width: 60%;
+    padding-bottom: 100px;
+  
+    .profile-header {
+      align-items: start;
+      margin-top: 60px;
+  
+      .profile-info {
+        .title {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          margin-bottom: 5px;
+        }
+  
+        h1 {
+          margin: 0;
+        }
+  
+        .user-bio p {
+          font-size: 1.1em;
+          line-height: 1.5em;
+          padding-right: 10px;
+          margin-right: 30px;
+        }
+  
+        .user-website {
+          margin-top: 15px;
+        }
+  
+        .user-stats {
+          margin-top: 20px;
+          color: $grey-dark;
+        }
+      }
+  
+      .user-avatat-wrapper img {
+        height: 225px;
+        border-radius: 50%;
+        object-fit: contain;
+      }
+    }
+  
+    .user-articles {
+      margin-top: 40px;
+  
+      .user-articles-tabs {
+        border-bottom: 1px solid $grey;
+        margin-bottom: 40px;
+        padding-bottom: 15px;
+  
+        a {
+          text-decoration: none;
+          padding: 15px 5px;
+          margin-bottom: 10px;
+        }
+      }
+  
+      .tab-content {
+        .article-preview-card {
+          width: 100%;
+        }
+  
+        article.article-preview-card:nth-child(2n + 0) {
+          flex-direction: row-reverse !important;
+        }
+      }
+    }
+  }

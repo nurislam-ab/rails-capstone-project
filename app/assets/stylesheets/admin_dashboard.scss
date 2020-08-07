@@ -1,3 +1,159 @@
-// Place all the styles related to the AdminDashboard controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@import 'application';
+
+/* #region Admin - lists */
+.container {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  flex-direction: column;
+  background-color: $white;
+
+  h1 {
+    font-size: 2em;
+    font-weight: 900;
+    margin: 30px 0;
+  }
+
+  .container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .new-article-btn {
+    padding: 10px 30px;
+    background-color: $light-green;
+    text-decoration: none;
+    color: $white;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: 0.5s;
+    border: 1px solid $light-green;
+  }
+
+  .new-article-btn:hover {
+    background-color: transparent;
+    color: $light-green;
+    border: 1px solid $light-green;
+    cursor: pointer;
+  }
+
+  .table-wrapper {
+    width: 100%;
+  }
+
+  table.items-tables {
+    width: 100%;
+    border-spacing: 0.5rem;
+    // border-collapse: collapse;
+
+    a {
+      text-decoration: none;
+      color: $blue;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      background-color: transparent !important;
+    }
+
+    td,
+    th {
+      border-bottom: 1px solid $border-color;
+      padding: 1.2rem 1rem;
+      text-align: left;
+    }
+
+    thead tr {
+      background-color: rgba(72, 126, 176, 0.2);
+    }
+
+    thead th {
+      font-weight: 600;
+      text-transform: uppercase;
+      color: $black;
+      border-top: 1px solid $border-color;
+    }
+
+    tbody td {
+      padding: 1.4rem 1rem;
+    }
+  }
+}
+
+/* #endregion Admin - lists */
+
+/* #region Admin panel main wrappers */
+.admin-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+
+  .admin-menu {
+    order: 2;
+    margin-top: 80px;
+  }
+
+  .admin-menu {
+    background-color: $white;
+    position: fixed;
+    height: 100vh;
+    margin-top: 80px;
+    width: calc(15% + 50px);
+    order: 1;
+    flex: 1 auto;
+    display: block;
+
+    .admin-menu-content {
+      display: flex;
+
+      ul.admin-menu-items {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        li {
+          line-height: 3rem;
+          border-bottom: 1px solid $border-color;
+          width: 100%;
+          display: flex;
+
+          a {
+            padding: 14px;
+            line-height: 2em;
+            width: 100%;
+            text-decoration: none;
+
+            .active {
+              border-left: 4px solid $yellow;
+              background-color: $yellow_rgba;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .main-content {
+    background-color: $main-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    order: 2;
+    flex: 2 0;
+    z-index: 1;
+    flex-grow: 10;
+    margin-left: calc(15% + 50px);
+
+    .container {
+      width: 90%;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+    }
+  }
+}
+
+/* #endregion Admin panel main wrappers */
