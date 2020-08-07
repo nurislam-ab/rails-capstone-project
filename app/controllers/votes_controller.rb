@@ -15,9 +15,9 @@ class VotesController < ApplicationController
     vote = Vote.find_by(id: params[:id], user: current_user, article_id: params[:article_id])
     if vote
       vote.destroy
-      redirect_to articles_path, notice: 'You have undo a vote for a article.'
+      redirect_back(fallback_location: root_path, notice: 'You have undo a vote for a article.')
     else
-      redirect_to articles_path, alert: 'You cannot undo vote for a article that you did not vote before.'
+      redirect_back(fallback_location: root_path, alert: 'You cannot undo vote for a article that you did not vote before.')
     end
   end
 end
