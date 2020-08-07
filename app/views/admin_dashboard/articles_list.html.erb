@@ -30,10 +30,8 @@
             <td><%= article.votes.count %></td>
             <td>
               <%= link_to 'Show', article %>
-              <% if current_user == article.author || current_user.id == 1%>
-                <%= link_to 'Edit', edit_article_path(article) %>
-                <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>
-              <% end %>
+              <%= link_to 'Edit', edit_article_path(article) %>
+              <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>
           </tr>
         <% end %>
       </tbody>
