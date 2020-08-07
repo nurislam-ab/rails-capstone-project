@@ -206,6 +206,7 @@ p.article-preview-text {
     font-weight: 600;
   }
 }
+
 /* #endregion Featured article */
 
 span.article-author {
@@ -403,7 +404,6 @@ a.edit-btn:hover {
   }
 }
 
-
 .no-items {
   display: flex;
   align-items: center;
@@ -448,7 +448,7 @@ footer.footer-container {
         align-items: center;
         display: flex;
         justify-content: center;
-        transition: .5s;
+        transition: 0.5s;
       }
 
       a.social-icon:hover {

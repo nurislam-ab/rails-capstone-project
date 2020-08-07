@@ -68,26 +68,26 @@ module ApplicationHelper
 
   def menu_links_render
     html_block = ''
-    if logged_in?
-      html_block += <<-HTML
+    html_block += if logged_in?
+                    <<-HTML
       <li>
           #{link_to current_user.name, user_path(current_user.id)}
       </li>
       <li>
-          #{link_to  "Log out", logout_path, method: :delete}
+          #{link_to 'Log out', logout_path, method: :delete}
       </li>
       #{admin_link_render(current_user)}
-      HTML
-    else
-      html_block += <<-HTML
+                    HTML
+                  else
+                    <<-HTML
       <li>
-        #{link_to  "Log in", login_path}
+        #{link_to 'Log in', login_path}
       </li>
       <li>
-        #{link_to  "Sign up", signup_path}
+        #{link_to 'Sign up', signup_path}
       </li>
-      HTML
-    end
+                    HTML
+                  end
     html_block.html_safe
   end
 end
