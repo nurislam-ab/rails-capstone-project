@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = obtain_article_only
     @article.destroy
-    redirect_back(fallback_location: root_path, notice: 'Article was successfully destroyed.')
+    redirect_to articles_path, notice: 'Article was successfully destroyed.'
   end
 
   private
