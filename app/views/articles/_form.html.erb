@@ -1,0 +1,20 @@
+<%= form_with(model: @article, local: true, multipart: true) do |f| %>
+    <%= show_errors(@article) %>
+
+    <%= f.label :title, "Article title" %>
+    <%= f.text_field :title, reqiured: true %>
+
+    <%= f.label :category_id, "Category" %>
+    <%= f.collection_select(:category_id, Category.all, :id, :name)%>
+
+    <%= f.label :preview_text, "Preview text" %>
+    <%= f.text_area :preview_text, required: true %>
+
+    <%= f.label :text, "Content" %>
+    <%= f.rich_text_area :text, required: true %>
+
+    <%= f.label :image, "Image" %>
+    <%= image_field_check(@article, f) %>
+
+    <%= f.submit 'Save', class: "add-btn"%>
+<% end %>
