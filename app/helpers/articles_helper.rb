@@ -111,4 +111,12 @@ module ArticlesHelper
       article_preview(articles)
     end
   end
+
+  def image_field_check(model, field)
+    if model.new_record?
+      field.file_field(:image, required: true)
+    else
+      field.file_field(:image) + image_tag(field.object.image)
+    end
+  end
 end

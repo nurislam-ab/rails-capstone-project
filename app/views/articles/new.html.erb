@@ -9,26 +9,7 @@
 
     <div class="form-container">
         <div class="form-wrapper">
-            <%= form_with(model: @article, local: true, multipart: true) do |f| %>
-                <%= show_errors(@article) %>
-
-                <%= f.label :title, "Article title" %>
-                <%= f.text_field :title, reqiured: true %>
-
-                <%= f.label :category_id, "Category" %>
-                <%= f.select :category_id, options_for_select(@categories), :prompt => 'Select one!' %>
-
-                <%= f.label :preview_text, "Preview text" %>
-                <%= f.text_area :preview_text, required: true %>
-
-                <%= f.label :text, "Content" %>
-                <%= f.rich_text_area :text, required: true %>
-
-                <%= f.label :image, "Image" %>
-                <%= f.file_field :image, required: true %>
-
-                <%= f.submit 'Add a post', class: "add-btn"%>
-            <% end %>
+            <%= render  'form' %>
         </div>
     </div>
 </div>
