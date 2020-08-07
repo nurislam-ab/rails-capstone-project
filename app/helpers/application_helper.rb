@@ -57,4 +57,37 @@ module ApplicationHelper
       end
     end
   end
+
+  def admin_link_render(user)
+    if user.id == 1
+      content_tag :li do
+        link_to('Admin Dashboard', articles_admin_path)
+      end
+    end
+  end
+
+  def menu_links_render
+    html_block = ''
+    if logged_in?
+      html_block += <<-HTML
+      <li>
+          #{link_to current_user.name, user_path(current_user.id)}
+      </li>
+      <li>
+          #{link_to  "Log out", logout_path, method: :delete}
+      </li>
+      #{admin_link_render(current_user)}
+      HTML
+    else
+      html_block += <<-HTML
+      <li>
+        #{link_to  "Log in", login_path}
+      </li>
+      <li>
+        #{link_to  "Sign up", signup_path}
+      </li>
+      HTML
+    end
+    html_block.html_safe
+  end
 end
