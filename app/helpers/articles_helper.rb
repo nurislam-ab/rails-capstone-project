@@ -6,7 +6,7 @@ module ArticlesHelper
       @recent_articles.collect do |ra|
         featured_article += <<-HTML
           <article class='featured-article'>
-              <div class="article-image-holder" style="background-image: url(#{url_for(ra.article.image)})"></div>
+              <div class="article-image-holder" style="background-image: url(#{url_for(ra.image)})"></div>
               <strong class="article-category">#{ra.category.name}</strong>
               <span class="article-author">#{ra.author.name}</span>
               <h2 class="article-title">#{link_to ra.title, ra}</h2>
