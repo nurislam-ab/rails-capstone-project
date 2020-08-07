@@ -8,23 +8,15 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.with_attached_image.includes(:category, :author, :votes).find(params[:id])
+    @article = obtain_article_with_resources
   end
 
   def new
     @article = Article.new
-    @categories = Category.all.map { |c| [c.name, c.id] }
-  end
-
-  def edit
-    @article = Article.with_attached_image.includes(:category).find(params[:id])
-    @categories = Category.all.map { |c| [c.name, c.id] }
-    @category = @article.category_id
   end
 
   def create
     @article = current_user.articles.build(article_params)
-    @categories = Category.all.map { |c| [c.name, c.id] }
 
     if @article.save
       redirect_to @article, notice: 'Article was successfully created.'
@@ -33,9 +25,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    @article = obtain_article_only
+  end
+
   def update
-    @article = Article.find(params[:id])
-    @categories = Category.all.map { |c| [c.name, c.id] }
+    @article = obtain_article_only
 
     if @article.update(article_params)
       redirect_to @article, notice: 'Article was successfully updated.'
@@ -45,7 +40,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    @article = obtain_article_only
     @article.destroy
     redirect_back(fallback_location: root_path, notice: 'Article was successfully destroyed.')
   end
@@ -53,8 +48,12 @@ class ArticlesController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_article
-    @article = Article.find(params[:id])
+  def obtain_article_only
+    Article.find(params[:id])
+  end
+
+  def obtain_article_with_resources
+    Article.includes(:author, :votes, :category).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
