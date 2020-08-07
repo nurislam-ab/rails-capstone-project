@@ -26,7 +26,7 @@
 
 ## Live Demo
 
-[Live demo](https://thawing-dawn-92083.herokuapp.com/)
+[Live demo](https://kitchen-loop.herokuapp.com/)
 
 
 ## Screenshots
