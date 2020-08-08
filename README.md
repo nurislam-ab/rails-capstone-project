@@ -26,7 +26,7 @@
 
 ## Live Demo
 
-[Live demo](https://kitchen-loop.herokuapp.com/)
+[Live demo]()
 
 
 ## Screenshots
