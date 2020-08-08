@@ -33,7 +33,6 @@ RSpec.describe 'user journey', type: :system do
       click_button 'Save'
       expect(page).to have_content('Scottish DJ, record producer, singer, and songwriter')
       expect(page).to have_content('Harris')
-      sleep(3)
     end
   end
 end
