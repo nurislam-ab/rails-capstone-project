@@ -9,7 +9,7 @@
         <div class="form-wrapper user-form">
             <%= form_for(:session) do |f| %>
                 <%= f.label :email, "Email" %>
-                <%= f.email_field :email, required: true %>
+                <%= f.email_field :email, required: true, autofocus: true %>
 
                 <%= f.submit "Log in", class: 'add-btn blue-dark-btn' %>
             <% end %>
