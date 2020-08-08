@@ -2,7 +2,7 @@ require_relative '../rails_helper'
 
 RSpec.describe 'user journey', type: :system do
   describe 'Navigate the webpage' do
-    it 'creates a new user, logs in and updates user profile info' do
+    it 'creates a new user, logs in and updates profile info' do
       visit root_path
       click_on 'Sign up'
       fill_in 'user[name]', with: 'Calvin'
